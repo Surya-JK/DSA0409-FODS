@@ -1,0 +1,21 @@
+import numpy as np
+from scipy.stats import ttest_ind
+import matplotlib.pyplot as plt
+
+control = np.random.normal(loc=130, scale=10, size=50)
+treatment = np.random.normal(loc=120, scale=10, size=50)
+
+t_stat, p_value = ttest_ind(control, treatment)
+
+plt.boxplot([control, treatment], labels=['Control', 'Treatment'])
+plt.title('Blood Pressure by Group')
+plt.ylabel('Blood Pressure')
+plt.show()
+
+print(f"T-statistic: {t_stat}")
+print(f"P-value: {p_value}")
+
+if p_value < 0.05:
+    print("The treatment has a statistically significant effect.")
+else:
+    print("No significant effect detected.")
