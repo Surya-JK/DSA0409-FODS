@@ -1,0 +1,16 @@
+import pandas as pd
+
+data = pd.read_csv('city_temperatures.csv')
+
+mean_temps = data.groupby('city')['temperature'].mean()
+std_temps = data.groupby('city')['temperature'].std()
+range_temps = data.groupby('city')['temperature'].apply(lambda x: x.max() - x.min())
+
+most_variable_city = range_temps.idxmax()
+most_consistent_city = std_temps.idxmin()
+
+print("Mean Temperatures:\n", mean_temps)
+print("\nStandard Deviations:\n", std_temps)
+print("\nTemperature Ranges:\n", range_temps)
+print(f"\nCity with highest temperature range: {most_variable_city}")
+print(f"City with most consistent temperature: {most_consistent_city}")
