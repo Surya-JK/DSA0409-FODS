@@ -1,0 +1,17 @@
+import numpy as np
+from sklearn.tree import DecisionTreeRegressor, export_text
+
+X = np.array([[50000,5], [30000,8], [70000,2], [60000,4], [45000,6]])
+y = np.array([20000, 15000, 30000, 25000, 18000])
+
+clf = DecisionTreeRegressor()
+clf.fit(X, y)
+
+mileage = float(input("Enter mileage: "))
+age = float(input("Enter age: "))
+
+predicted_price = clf.predict([[mileage, age]])
+print(f"Predicted Car Price: ${predicted_price[0]:,.2f}")
+
+tree_rules = export_text(clf, feature_names=["mileage", "age"])
+print("Decision Path:\n", tree_rules)
