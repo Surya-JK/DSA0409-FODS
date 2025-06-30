@@ -1,0 +1,15 @@
+import numpy as np
+from scipy.stats import ttest_ind
+
+conversion_A = np.random.normal(loc=0.10, scale=0.02, size=1000)
+conversion_B = np.random.normal(loc=0.12, scale=0.02, size=1000)
+
+t_stat, p_value = ttest_ind(conversion_A, conversion_B)
+
+print(f"T-statistic: {t_stat}")
+print(f"P-value: {p_value}")
+
+if p_value < 0.05:
+    print("There is a statistically significant difference between the two website designs.")
+else:
+    print("No statistically significant difference between the two website designs.")
