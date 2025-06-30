@@ -1,0 +1,23 @@
+import matplotlib.pyplot as plt
+
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May']
+sales = [20000, 25000, 22000, 27000, 30000]
+
+
+plt.figure(figsize=(6, 4))
+plt.plot(months, sales, marker='o', linestyle='-', color='blue')
+plt.title("Monthly Sales (Line Plot)")
+plt.xlabel("Month")
+plt.ylabel("Sales in ₹")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+
+plt.figure(figsize=(6, 4))
+plt.bar(months, sales, color='orange')
+plt.title("Monthly Sales (Bar Plot)")
+plt.xlabel("Month")
+plt.ylabel("Sales in ₹")
+plt.tight_layout()
+plt.show()
