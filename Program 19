@@ -1,0 +1,16 @@
+import numpy as np
+import scipy.stats as stats
+
+drug_reduction = np.random.normal(loc=15, scale=5, size=50)
+placebo_reduction = np.random.normal(loc=5, scale=5, size=50)
+
+mean_drug = np.mean(drug_reduction)
+se_drug = stats.sem(drug_reduction)
+ci_drug = stats.t.interval(0.95, len(drug_reduction)-1, loc=mean_drug, scale=se_drug)
+
+mean_placebo = np.mean(placebo_reduction)
+se_placebo = stats.sem(placebo_reduction)
+ci_placebo = stats.t.interval(0.95, len(placebo_reduction)-1, loc=mean_placebo, scale=se_placebo)
+
+print(f"95% CI for mean reduction (Drug): {ci_drug}")
+print(f"95% CI for mean reduction (Placebo): {ci_placebo}")
