@@ -1,0 +1,14 @@
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+
+X = np.array([[500,12], [200,6], [700,24], [100,3], [600,18]])
+y = np.array([0,1,0,1,0])
+
+clf = LogisticRegression()
+clf.fit(X, y)
+
+usage = float(input("Enter usage minutes: "))
+contract = float(input("Enter contract duration (months): "))
+
+prediction = clf.predict([[usage, contract]])
+print(f"Churn Prediction (0=No, 1=Yes): {prediction[0]}")
