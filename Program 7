@@ -1,0 +1,26 @@
+import numpy as np
+
+fuel_efficiency = np.array([22.5, 28.3, 31.7, 26.4, 30.1, 35.6, 33.2, 29.0, 24.8, 37.4])
+engine_type = np.array(['Petrol', 'Diesel', 'Hybrid', 'Petrol', 'Hybrid','Electric', 'Diesel', 'Petrol', 'Diesel', 'Electric'])
+
+average_efficiency = np.mean(fuel_efficiency)
+
+model_a = fuel_efficiency[2]
+model_b = fuel_efficiency[5]
+improvement = ((model_b - model_a) / model_a) * 100
+
+most_efficient_index = np.argmax(fuel_efficiency)
+most_efficient_value = fuel_efficiency[most_efficient_index]
+most_efficient_engine = engine_type[most_efficient_index]
+
+print(f"Average Fuel Efficiency: {average_efficiency:.2f} mpg")
+print(f"Fuel Efficiency of Model A: {model_a:.2f} mpg")
+print(f"Fuel Efficiency of Model B: {model_b:.2f} mpg")
+print(f"Percentage Improvement from Model A to B: {improvement:.2f}%")
+print(f"Most Fuel-Efficient Model: Model {most_efficient_index + 1} ({most_efficient_engine}) with {most_efficient_value:.2f} mpg")
+
+unique_engines = np.unique(engine_type)
+print("\nAverage Fuel Efficiency by Engine Type:")
+for engine in unique_engines:
+    avg_by_type = np.mean(fuel_efficiency[engine_type == engine])
+    print(f"{engine}: {avg_by_type:.2f} mpg")
