@@ -1,0 +1,32 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data = pd.DataFrame({
+    'name': ['Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6'],
+    'age': [24, 30, 28, 35, 22, 27],
+    'position': ['Forward', 'Midfielder', 'Defender', 'Forward', 'Goalkeeper', 'Midfielder'],
+    'goals': [15, 8, 5, 20, 0, 10],
+    'salary': [50000, 45000, 40000, 60000, 30000, 42000]
+})
+
+data.to_csv('soccer_players.csv', index=False)
+
+df = pd.read_csv('soccer_players.csv')
+
+top_goals = df.nlargest(5, 'goals')[['name', 'goals']]
+top_salaries = df.nlargest(5, 'salary')[['name', 'salary']]
+average_age = df['age'].mean()
+older_players = df[df['age'] > average_age]['name']
+
+print("Top 5 Players by Goals:\n", top_goals)
+print("\nTop 5 Players by Salary:\n", top_salaries)
+print(f"\nAverage Age: {average_age}")
+print("\nPlayers Above Average Age:\n", list(older_players))
+
+position_counts = df['position'].value_counts()
+
+plt.bar(position_counts.index, position_counts.values, color='skyblue')
+plt.title('Player Distribution by Position')
+plt.xlabel('Position')
+plt.ylabel('Number of Players')
+plt.show()
