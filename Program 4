@@ -1,0 +1,31 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    'Month': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    'Temperature': [15, 17, 20, 24, 28, 30, 29, 28, 26, 22, 18, 16],
+    'Rainfall': [78, 60, 55, 42, 35, 90, 120, 110, 85, 70, 80, 75]
+}
+
+df = pd.DataFrame(data)
+
+plt.figure(figsize=(10, 5))
+plt.plot(df['Month'], df['Temperature'], marker='o', label='Temperature (°C)', color='red')
+plt.plot(df['Month'], df['Rainfall'], marker='s', label='Rainfall (mm)', color='blue')
+plt.title('Monthly Temperature and Rainfall')
+plt.xlabel('Month')
+plt.ylabel('Value')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(6, 5))
+plt.scatter(df['Temperature'], df['Rainfall'], color='purple')
+plt.title('Scatter Plot: Temperature vs Rainfall')
+plt.xlabel('Temperature (°C)')
+plt.ylabel('Rainfall (mm)')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
