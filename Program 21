@@ -1,0 +1,16 @@
+import pandas as pd
+import numpy as np
+import scipy.stats as stats
+
+sample_size = int(input("Enter sample size: "))
+confidence_level = float(input("Enter confidence level (e.g., 0.95): "))
+
+data = pd.read_csv('rare_elements.csv')
+sample = data.sample(n=sample_size, random_state=42)['concentration']
+
+mean = np.mean(sample)
+se = stats.sem(sample)
+ci = stats.t.interval(confidence_level, sample_size-1, loc=mean, scale=se)
+
+print(f"Sample Mean: {mean}")
+print(f"{int(confidence_level*100)}% Confidence Interval: {ci}")
