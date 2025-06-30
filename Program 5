@@ -1,0 +1,20 @@
+import numpy as np
+
+house_data = np.array([
+    [3, 1200, 250000, 1],
+    [5, 2400, 475000, 1],
+    [4, 1800, 350000, 0],
+    [6, 3000, 625000, 1],
+    [5, 2200, 490000, 0],
+    [2, 950, 190000, 1],
+    [5, 2100, 460000, 1]
+])
+
+filtered = house_data[house_data[:, 0] > 4]
+avg_price_over_4_bedrooms = np.mean(filtered[:, 2])
+
+garage_filtered = filtered[filtered[:, 3] == 1]
+avg_price_over_4_bedrooms_with_garage = np.mean(garage_filtered[:, 2])
+
+print(f"Average Sale Price (Bedrooms > 4): ₹{avg_price_over_4_bedrooms:.2f}")
+print(f"Average Sale Price (Bedrooms > 4 & Garage): ₹{avg_price_over_4_bedrooms_with_garage:.2f}")
