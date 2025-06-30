@@ -1,0 +1,14 @@
+import numpy as np
+from sklearn.neighbors import KNeighborsClassifier
+
+X = np.array([[1,2], [2,3], [3,1], [6,5], [7,7], [8,6]])
+y = np.array([0,0,0,1,1,1])
+
+new_patient = [float(x) for x in input("Enter features separated by space: ").split()]
+k = int(input("Enter k: "))
+
+knn = KNeighborsClassifier(n_neighbors=k)
+knn.fit(X, y)
+
+prediction = knn.predict([new_patient])
+print(f"Prediction (0=No, 1=Yes): {prediction[0]}")
