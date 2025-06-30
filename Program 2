@@ -1,0 +1,23 @@
+import pandas as pd
+from collections import Counter
+import matplotlib.pyplot as plt
+
+data = {
+    'post_id': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'likes': [10, 15, 10, 5, 20, 15, 10, 5, 10, 5]
+}
+
+df = pd.DataFrame(data)
+
+like_counts = Counter(df['likes'])
+
+print("Frequency Distribution of Likes:")
+for like, freq in sorted(like_counts.items()):
+    print(f"{like} likes: {freq} posts")
+
+plt.bar(like_counts.keys(), like_counts.values(), color='skyblue')
+plt.xlabel('Number of Likes')
+plt.ylabel('Number of Posts')
+plt.title('Frequency Distribution of Likes Among Posts')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
