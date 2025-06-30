@@ -1,0 +1,34 @@
+import pandas as pd
+
+data = {
+    'customer_id': [1, 2, 1, 3, 2, 3, 1],
+    'order_date': [
+        '2025-06-01', '2025-06-02', '2025-06-03', 
+        '2025-06-04', '2025-06-05', '2025-06-06', '2025-06-07'
+    ],
+    'product_name': [
+        'Laptop', 'Phone', 'Laptop', 
+        'Tablet', 'Laptop', 'Phone', 'Tablet'
+    ],
+    'order_quantity': [1, 2, 1, 1, 3, 2, 1]
+}
+
+order_data = pd.DataFrame(data)
+order_data['order_date'] = pd.to_datetime(order_data['order_date'])
+
+total_orders_per_customer = order_data.groupby('customer_id').size().reset_index(name='total_orders')
+print("Total number of orders by each customer:")
+print(total_orders_per_customer, '\n')
+
+avg_quantity_per_product = order_data.groupby('product_name')['order_quantity'].mean().reset_index(name='avg_quantity')
+print("Average order quantity per product:")
+print(avg_quantity_per_product, '\n')
+
+earliest_date = order_data['order_date'].min()
+latest_date = order_data['order_date'].max()
+print(f"Earliest order date: {earliest_date}")
+print(f"Latest order date: {latest_date}\n")
+
+top_products = order_data.groupby('product_name')['order_quantity'].sum().reset_index().sort_values(by='order_quantity', ascending=False).head(3)
+print("Top 3 most ordered products:")
+print(top_products)
