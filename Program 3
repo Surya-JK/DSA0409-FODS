@@ -1,0 +1,14 @@
+from collections import Counter
+import string
+
+with open("sample.txt", "r", encoding="utf-8") as f:
+    text = f.read().lower()
+    space_count = text.count(' ')
+    words = text.translate(str.maketrans('', '', string.punctuation)).split()
+
+freq = Counter(words)
+
+print(f"\n{'Word':<15}Frequency\n" + '-'*25)
+for word in sorted(freq):
+    print(f"{word:<15}{freq[word]}")
+print(f"\nTotal spaces: {space_count}")
