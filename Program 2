@@ -1,0 +1,12 @@
+import numpy as np
+
+sales_data = np.array([
+    [200, 250, 180],  # Product 1
+    [150, 300, 220],  # Product 2
+    [180, 210, 270]   # Product 3
+])
+
+average_price = np.mean(sales_data)
+
+print("Sales Data (3x3 Matrix):\n", sales_data)
+print(f"\nAverage price of all products sold: {average_price:.2f}")
